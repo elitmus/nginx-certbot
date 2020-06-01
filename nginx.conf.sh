@@ -25,6 +25,11 @@ server {
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
+  location /elb-status {
+    access_log off;
+    return 204;
+  }
+
   location / {
     proxy_pass http://$proxy_pass:$port;
     proxy_http_version 1.1;
